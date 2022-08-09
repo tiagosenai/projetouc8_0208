@@ -57,4 +57,10 @@ public class CategoriaController {
 		servico.salvarCategorias(categoria);
 		return "redirect:/categoria";
 	}
+	
+	@GetMapping("/produto")
+	public String listarProdutos(Model modelo) {
+		//modelo.addAttribute("categoria", servico.listarCategorias());
+		return "produto"; //mostrar a página categoria.html
+	}
 }
