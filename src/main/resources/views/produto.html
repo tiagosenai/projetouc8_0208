@@ -25,9 +25,9 @@
 							<li class="nav-item active"><a class="nav-link" href="#">Home
 									<span class="sr-only">(current)</span>
 							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">Categorias</a>
+							<li class="nav-item"><a class="nav-link" href="/categoria">Categorias</a>
 							</li>
-							<li class="nav-item"><a class="nav-link" href="#">Produtos</a>
+							<li class="nav-item"><a class="nav-link" href="/produto">Produtos</a>
 							</li>
 							<!--
 						<li class="nav-item dropdown">
@@ -69,22 +69,32 @@
 			</div>
 		</div>
 	</div>
-	
-	
 	<div class="container-fluid">
-		<h2 style="text-align: center;">Cadastro de Categoria</h2>
-		<div class="jumbotron" style="width: 800px; margin: 0 auto;">
-			<form th:action="@{/categoria}" th:object="${categoria}" method="POST">
-				<div class="form-group">
-					<label>Categoria</label>
-					<input type="text" name="categoria" th:field="*{descricao}" class="form-control" required>
-				</div>
-				<div class="form-group">
-					<label>Ativo</label>
-					<input type="text" name="ativo" th:field="*{ativo}" class="form-control" required>
-				</div>
-				<button class="btn btn-info">Salvar</button>
-			</form>
+		<h2 style="text-align: center;">Produtos Cadastrados</h2>
+		<div class="row">
+			<div class="col-lg-12" style="text-align: center;">
+				<a th:href="@{/categoria/adicionar}" class="btn btn-outline-primary">Adicionar
+					Produto</a>
+			</div>
 		</div>
+		<br>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Categoria</th>
+					<th>Ativo</th>
+					<th>Opções</th>
+			</thead>
+			<tbody>
+				<tr th:each="categoria:${categoria}">
+					<td th:text=${categoria.descricao}>Categoria</td>
+					<td th:text=${categoria.ativo}>Ativo</td>
+					<td>
+						<a th:href="@{/categoria/{id}(id=${categoria.id})}" class="btn btn-outline-danger">Apagar</a>
+						<a th:href="@{/categoria/editar/{id}(id=${categoria.id})}" class="btn btn-outline-warning">Editar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </body>

@@ -44,4 +44,17 @@ public class CategoriaController {
 		servico.atualizarCategorias(cat);
 		return "redirect:/categoria";
 	}
+	
+	@GetMapping("/categoria/adicionar")
+	public String adicionarCategorias(Model modelo) {
+		Categoria categoria = new Categoria();
+		modelo.addAttribute("categoria", categoria);
+		return "formCategoria";
+	}
+	
+	@PostMapping("/categoria")
+	public String salvarCategorias(@ModelAttribute("categoria") Categoria categoria) {
+		servico.salvarCategorias(categoria);
+		return "redirect:/categoria";
+	}
 }

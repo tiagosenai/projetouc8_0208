@@ -29,4 +29,8 @@ public class CategoriaServicoCRUD implements CategoriaServico{
 	public Categoria atualizarCategorias(Categoria categoria) {
 		return repositorio.save(categoria);
 	}
+	
+	public Categoria salvarCategorias(Categoria categoria) {
+		return repositorio.save(categoria);
+	}
 }

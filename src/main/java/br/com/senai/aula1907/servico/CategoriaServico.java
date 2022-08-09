@@ -12,4 +12,6 @@ public interface CategoriaServico {
 	public Categoria consultarCategoriasId(Integer id);
 	
 	public Categoria atualizarCategorias(Categoria categoria);
+	
+	public Categoria salvarCategorias(Categoria categoria);
 }
