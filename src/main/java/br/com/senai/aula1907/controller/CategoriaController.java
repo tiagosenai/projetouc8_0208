@@ -86,4 +86,24 @@ public class CategoriaController {
 		servicoProduto.apagarProdutos(id);
 		return "redirect:/produto";
 	}
+	
+	@GetMapping({"/produto/editar/{id}"})
+	public String editarProdutos(@PathVariable Integer id, Model modelo) {
+		modelo.addAttribute("produto", servicoProduto.consultarProdutosId(id));
+		return "editarProduto"; //mostrar a página Editar Produto
+	}
+	
+	@PostMapping("/produto/{id}")
+	public String atualizarProdutos(@PathVariable Integer id, @ModelAttribute("produto") Produtos produto, Model modelo) {
+		Produtos prod = servicoProduto.consultarProdutosId(id);
+		prod.setId(id);
+		prod.setDescricao(produto.getDescricao());
+		prod.setId_categoria(produto.getId_categoria());
+		prod.setPreco_venda(produto.getPreco_venda());
+		prod.setPreco_custo(produto.getPreco_custo());
+		prod.setMargem_lucro(produto.getMargem_lucro());
+		prod.setFoto(produto.getFoto());
+		servicoProduto.atualizarProdutos(prod);
+		return "redirect:/produto";
+	}
 }

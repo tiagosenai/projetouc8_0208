@@ -11,4 +11,8 @@ public interface ProdutoServico {
 	public Produtos salvarProdutos(Produtos produto);
 	
 	public void apagarProdutos(Integer id);
+	
+	public Produtos consultarProdutosId(Integer id);
+	
+	public Produtos atualizarProdutos(Produtos produto);
 }
