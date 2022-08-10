@@ -9,13 +9,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.com.senai.aula1907.orm.Categoria;
+import br.com.senai.aula1907.orm.Produtos;
 import br.com.senai.aula1907.servico.CategoriaServico;
+import br.com.senai.aula1907.servico.ProdutoServico;
 
 @Controller
 public class CategoriaController {
 	
 	@Autowired
 	private CategoriaServico servico;
+	@Autowired
+	private ProdutoServico servicoProduto;
 	
 	@GetMapping({"/categoria"})
 	public String listarCategorias(Model modelo) {
@@ -60,7 +64,26 @@ public class CategoriaController {
 	
 	@GetMapping("/produto")
 	public String listarProdutos(Model modelo) {
-		//modelo.addAttribute("categoria", servico.listarCategorias());
+		modelo.addAttribute("produtos", servicoProduto.listarProdutos());
 		return "produto"; //mostrar a página categoria.html
+	}
+	
+	@GetMapping("/produto/adicionar")
+	public String adicionarProdutos(Model modelo) {
+		Produtos produto = new Produtos();
+		modelo.addAttribute("produtos", produto);
+		return "formProduto";
+	}
+	
+	@PostMapping("/produto")
+	public String salvarProdutos(@ModelAttribute("produtos") Produtos produto) {
+		servicoProduto.salvarProdutos(produto);
+		return "redirect:/produto";
+	}
+	
+	@GetMapping({"/produto/{id}"})
+	public String apagarProdutos(@PathVariable Integer id) {
+		servicoProduto.apagarProdutos(id);
+		return "redirect:/produto";
 	}
 }

@@ -69,38 +69,38 @@
 			</div>
 		</div>
 	</div>
+	
+	
 	<div class="container-fluid">
-		<h2 style="text-align: center;">Produtos Cadastrados</h2>
-		<div class="row">
-			<div class="col-lg-12" style="text-align: center;">
-				<a th:href="@{/produto/adicionar}" class="btn btn-outline-primary">Adicionar
-					Produto</a>
-			</div>
+		<h2 style="text-align: center;">Cadastro de Produtos</h2>
+		<div class="jumbotron" style="width: 800px; margin: 0 auto;">
+			<form th:action="@{/produto}" th:object="${produtos}" method="POST">
+				<div class="form-group">
+					<label>Descrição</label>
+					<input type="text" name="descricao" th:field="*{descricao}" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<label>Categoria</label>
+					<input type="text" name="id_categoria" th:field="*{id_categoria}" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<label>Preço Venda</label>
+					<input type="text" name="preco_venda" th:field="*{preco_venda}" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<label>Preço Custo</label>
+					<input type="text" name="preco_custo" th:field="*{preco_custo}" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<label>Margem Lucro</label>
+					<input type="text" name="margem_lucro" th:field="*{margem_lucro}" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<label>Foto</label>
+					<input type="text" name="foto" th:field="*{foto}" class="form-control" required>
+				</div>
+				<button class="btn btn-info">Salvar</button>
+			</form>
 		</div>
-		<br>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Descrição</th>
-					<th>Preço Custo</th>
-					<th>Preço Venda</th>
-					<th>Margem Lucro</th>
-					<th>Foto</th>
-					<th>Opções</th>
-			</thead>
-			<tbody>
-				<tr th:each="produto:${produtos}">
-					<td th:text=${produto.descricao}>Descrição</td>
-					<td th:text=${produto.preco_custo}>Preço Custo</td>
-					<td th:text=${produto.preco_venda}>Preço Venda</td>
-					<td th:text=${produto.margem_lucro}>Margem Lucro</td>
-					<td><img th:src="${produto.foto}" width="100"/></td>
-					<td>
-						<a th:href="@{/produto/{id}(id=${produto.id})}" class="btn btn-outline-danger">Apagar</a>
-						<a th:href="@{/produto/editar/{id}(id=${produto.id})}" class="btn btn-outline-warning">Editar</a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
 	</div>
 </body>

@@ -16,6 +16,7 @@ public class Produtos {
 	private Float preco_custo;
 	private Float margem_lucro;
 	private String foto;
+	
 	public Integer getId() {
 		return id;
 	}
